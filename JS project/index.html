@@ -2,8 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>JavaScript Team Project</title>
-    <script src="kinetic.min.js" type="text/javascript"></script>
-    <link href="styles.css" rel="stylesheet" />
+    <script src="scripts/kinetic.min.js" type="text/javascript"></script>
+    <link href="styles/style.css" rel="stylesheet" />
 </head>
 <body>
     <h1>Team 'Jerry Mouse' presents... </h1>
@@ -11,18 +11,14 @@
     <div id="game-container"></div>
     <script type="text/javascript">
         function play() {
-            //Правене на нов kinetic-stage
             var stage = new Kinetic.Stage({
                 container: 'game-container',
                 width: 800,
                 height: 600
             });
-            //Правене на нов kinetic-layer
             var layer = new Kinetic.Layer();
             var level = 0;
-            //Прибавяне на всички kinetic обекти към kinetic самия kinetic layer и stage
             stage.add(layer);
-            //Правя нов обект от тип чаша
             var level = 0;
             var currentCups = 3;
             var txt = new Kinetic.Text({
@@ -35,7 +31,6 @@
             layer.add(txt);
             stage.add(layer);
             function Rect(cx, cy) {
-                //Когато снимката е заредена тогава я покажи
                 var cup = new Kinetic.Rect({
                     x: cx,
                     y: cy,
@@ -44,14 +39,10 @@
                     fill: 'black'
                 });
                 layer.add(cup);
-                //Добавяне към kinetic-layer-а;
-                //Добавяне към kinetic-stage
                 stage.add(layer);
-                //Запазване на нива
                 cup.on("click", function () {
                     var amplitude = 30;
                     var period = 1000;
-                    // in ms
                     var centerY = 143;
                     var anim = new Kinetic.Animation(function (frame) {
                         cup.setY(amplitude * Math.sin(frame.time * 2 * Math.PI / period) + centerY);
@@ -74,7 +65,6 @@
                     else {
                         if (level < 5) {
                             setTimeout(function () {
-                                //alert('За съжаление не позна! Топчето е в чаша ' + (random + 1));
                                 anim.stop();
                             }, 1050);
                         }
@@ -142,9 +132,7 @@
                     }
                 });
                 console.log(level);
-                //Адреса на картинката(чаша)
             }
-            //Изписване на нивата
             var levels = new Kinetic.Text({
                 x: 10,
                 y: 10,
@@ -161,8 +149,6 @@
             });
             layer.add(numberOfCups);
             layer.add(levels);
-
-            //Array от чашите
             var cups = [];
             for (var i = 1; i < level + 4; i++) {
                 cups.push(Rect((5 + i * 100), 150));
